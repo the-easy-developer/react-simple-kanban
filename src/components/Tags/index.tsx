@@ -25,6 +25,12 @@ export default function Tags() {
       toast.warn("There are issues associated with this tag. Can't delete.", { autoClose: 5000 });
     } else {
       updateStorage(storageKeys.tags, tagsList.split(',').filter(t => t !== tag).join(','));
+
+      const newIssues = { ...issues };
+
+      delete newIssues[tag];
+
+      updateStorage(storageKeys.issues, newIssues);
     }
   };
 

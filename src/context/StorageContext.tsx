@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, ReactElement, useCallback, useContext, useState } from "react";
 
 import { retrieve, store } from "../utils/storage";
 
@@ -8,20 +8,16 @@ const defaultStorageContextValue: StorageContextValueType = { tags: '', issues: 
 
 const StorageContext = createContext(defaultStorageContextValue);
 
+const tagsVal = retrieve("tags");
+const issuesVal = retrieve("issues");
+
 export function StorageProvider({ children }: { children: ReactElement }) {
 
-  const [localStorageDataMap, setLocalStorageDataMap] = useState(defaultStorageContextValue);
-
-  useEffect(() => {
-    const tagsVal = retrieve("tags");
-    const issuesVal = retrieve("issues");
-
-    setLocalStorageDataMap(prev => ({
-      ...prev,
-      tags: tagsVal ? tagsVal : prev.tags,
-      issues: issuesVal ? issuesVal : prev.issues
-    }));
-  }, []);
+  const [localStorageDataMap, setLocalStorageDataMap] = useState({
+    ...defaultStorageContextValue,
+    tags: tagsVal ? tagsVal : defaultStorageContextValue.tags,
+    issues: issuesVal ? issuesVal : defaultStorageContextValue.issues
+  });
 
   const updateStorage = useCallback(<T,>(storageKey: StorageKeysType, value: T) => {
     store(storageKey, value);
