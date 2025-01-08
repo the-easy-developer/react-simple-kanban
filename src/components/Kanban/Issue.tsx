@@ -16,7 +16,7 @@ export default function Issue(props: IssueProps) {
 
   return (
     <Box
-      className="w-full h-[100px] border-2 rounded p-2 flex flex-col justify-between"
+      className="w-full min-h-[100px] border-2 rounded p-2 flex flex-col justify-between"
       ref={ref}
     >
       <Typography variant="h6">
