@@ -87,6 +87,7 @@ export default function CreateIssue(props: CreateIssueProps) {
         onChange={handleIssueNameChange}
         error={false}
         helperText={""}
+        name="issue-name"
       />
       <FormControl fullWidth>
         <InputLabel> Tag </InputLabel>

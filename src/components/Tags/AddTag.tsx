@@ -47,6 +47,7 @@ export default function AddTag(props: AddTagProps) {
         onChange={(e) => updateTagValue(e.currentTarget.value)}
         error={Boolean(invalidTagMessage)}
         helperText={invalidTagMessage ?? ""}
+        name="tag-name"
       />
       <Box className="flex w-full justify-end gap-1">
         <Button variant="contained" onClick={storeTag} disabled={!tagValue || !!invalidTagMessage}> Add </Button>

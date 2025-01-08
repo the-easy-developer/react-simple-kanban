@@ -3,6 +3,9 @@ import { useMemo } from "react";
 import { useStorageContext } from "../context/StorageContext";
 
 function getFormatTagsObj(tagsList: string) {
+  if (tagsList === '') {
+    return {};
+  }
   return tagsList.split(',').reduce((acc, tag) => {
     acc[tag] = tag.split('-').map(word => {
       const w = word.split('');
