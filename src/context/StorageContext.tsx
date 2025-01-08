@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useCallback, useContext, useState } from "react";
+import { createContext, ReactElement, useCallback, useState, use } from "react";
 
 import { retrieve, store } from "../utils/storage";
 
@@ -27,9 +27,9 @@ export function StorageProvider({ children }: { children: ReactElement }) {
     }));
   }, []);
 
-  return <StorageContext.Provider value={{ ...localStorageDataMap, updateStorage }}> {children} </StorageContext.Provider>;
+  return <StorageContext value={{ ...localStorageDataMap, updateStorage }}> {children} </StorageContext>;
 }
 
 export function useStorageContext() {
-  return useContext(StorageContext);
+  return use(StorageContext);
 }
